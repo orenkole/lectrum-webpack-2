@@ -75,3 +75,7 @@ _package.json_
 ```json
         "serve": "serve \"./dist\" -s"
 ```
+
+# Lesson 2
+
+**Entry**
