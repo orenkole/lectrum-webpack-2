@@ -6,7 +6,7 @@
     "scripts": {
         "checkpoint": "cross-env-shell NODE_ENV=development node --require @babel/register \"./scripts/git/checkpoint.js\"",
         "sync": "cross-env-shell NODE_ENV=development node --require @babel/register \"./scripts/git/sync.js\"",
-        "build": "webpack --mode=development",
+        "build": "webpack --config=./scripts/webpack/webpack.config.js",
         "serve": "serve \"./dist\" -s"
     },
     "devDependencies": {
@@ -14,7 +14,7 @@
         "@babel/plugin-syntax-async-generators": "7.2.0",
         "@babel/preset-env": "7.2.0",
         "@babel/register": "7.0.0",
-        "app-root-path": "2.1.0",
+        "app-root-path": "^2.1.0",
         "babel-plugin-dynamic-import-node": "2.2.0",
         "clean-webpack-plugin": "^4.0.0",
         "cross-env": "5.2.0",
