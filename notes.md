@@ -77,5 +77,47 @@ _package.json_
 ```
 
 # Lesson 2
+Some working with pathes,
+clean-webpack-plugin
 
-**Entry**
+---
+Move to node run webpack
+_build.js_
+```javascript
+/**
+ * 1. webpack
+ * 2. config
+ * 3. create webpack compiler
+ * 4. execution
+ */
+
+const webpack = require('webpack')
+const chalk = require('chalk')
+
+const config = require('./webpack.config')
+
+const compiler = webpack(config);
+
+compiler.run((error, stats) => {
+    //...
+});
+```
+Modify webpack console output:
+```javascript
+    const info = stats.toString({
+        hash: true,
+        modules: false,
+    })
+
+    console.log(chalk.greenBright('Build completed'))
+    console.log(info)
+```
+---
+Example of hooks:
+https://webpack.js.org/api/compiler-hooks/
+```javascript
+compiler.hooks.done.tap({name: 'start', () => {
+    console.log(' Compilation started ')
+    // do smth ...
+}})
+```

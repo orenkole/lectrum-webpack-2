@@ -6,7 +6,7 @@
     "scripts": {
         "checkpoint": "cross-env-shell NODE_ENV=development node --require @babel/register \"./scripts/git/checkpoint.js\"",
         "sync": "cross-env-shell NODE_ENV=development node --require @babel/register \"./scripts/git/sync.js\"",
-        "build": "webpack --config=./scripts/webpack/webpack.config.js",
+        "build": "node \"./scripts/webpack/build.js\"",
         "serve": "serve \"./dist\" -s"
     },
     "devDependencies": {
@@ -16,6 +16,7 @@
         "@babel/register": "7.0.0",
         "app-root-path": "^2.1.0",
         "babel-plugin-dynamic-import-node": "2.2.0",
+        "chalk": "^4.1.2",
         "clean-webpack-plugin": "^4.0.0",
         "cross-env": "5.2.0",
         "html-webpack-plugin": "^5.5.0",
