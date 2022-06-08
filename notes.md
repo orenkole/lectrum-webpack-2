@@ -77,11 +77,11 @@ _package.json_
 ```
 
 # Lesson 2
-Some working with pathes,
+Some working with paths,
 clean-webpack-plugin
 
 ---
-Move to node run webpack
+## Move to node run webpack
 _build.js_
 ```javascript
 /**
@@ -121,7 +121,7 @@ compiler.hooks.done.tap({name: 'start', () => {
     // do smth ...
 }})
 ```
-Handle css
+## Handle css
 _mini-css-extract-plugin_ for production
 _style-loader css-loader_ for development
 ```
@@ -147,3 +147,57 @@ module: {
     ]
 }
 ```
+---
+
+## 1st look at webpack-dev-server
+
+- Hot reloading is hard to maintain
+- Hot reloading modifies code in dev mode, so it is different from prod
+
+we'll test hot reloading
+1. setup on server
+2. setup on client
+3. setup in webpack config
+4. setup in source
+
+Webpack V4
+_start.js_
+```javascript
+        setupMiddlewares: (app) => { // add hot middleware
+            app.use(
+                hot(compiler, {
+                    log: false,
+                })
+            )
+        },
+```
+_webpack.config.js
+```javascript
+import {HotModuleReplacementPlugin} from "webpac";
+
+        entry: [
+            'webpack-hot-middleware/client?reload=true&quiet=true',
+            SOURCE_DIRECTORY
+        ],
+    ...
+        plugins:[
+            ...
+            new HotModuleReplacementPlugin()
+        ]
+```
+_index.js_
+```javascript
+if (module.hot) {
+    module.hot.accept('./simple-components/dom', function() {
+        document.body.removeChild(element);
+        element = component();
+        document.body.appendChild(element);
+    })
+}
+```
+
+Webpack V5
+out of the box?
+---
+react-hot-loader
+used instead of webpack-hot-middleware.
