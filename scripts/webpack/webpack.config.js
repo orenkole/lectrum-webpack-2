@@ -24,6 +24,14 @@ module.exports = () => {
             // needed for clean-webpack-plugin
             path: BUILD_DIRECTORY,
         },
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: [ 'style-loader', 'css-loader' ]
+                }
+            ]
+        },
         plugins: [
             new HtmlWebpackPlugin({
                 template: "./static/template.html",

@@ -121,3 +121,29 @@ compiler.hooks.done.tap({name: 'start', () => {
     // do smth ...
 }})
 ```
+Handle css
+_mini-css-extract-plugin_ for production
+_style-loader css-loader_ for development
+```
+npm i -D mini-css-extract-plugin
+npm i -D style-loader css-loader
+```
+
+Loaders are able to chain (from bottom to top)
+
+![](./notes_images/loaders-chain.png?raw=true)
+![](./notes_images/why-style.png?raw=true)
+
+_style-loader_ converts to js in order to use hot-reloading. Hot reloading can't work with external css files, only with <style> tags
+
+_webpack.config.js_
+```javascript
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: [ 'style-loader', 'css-loader' ]
+        }
+    ]
+}
+```

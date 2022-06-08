@@ -1,6 +1,6 @@
 node_modules
 static
-dist
+build
 **/.DS_Store
 **/.idea/
 package-lock.json
