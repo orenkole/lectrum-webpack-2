@@ -201,3 +201,9 @@ out of the box?
 ---
 react-hot-loader
 used instead of webpack-hot-middleware.
+
+# Lesson 3
+
+## detect-port-alt
+
+`npm i -D detect-port-alt inquirer`

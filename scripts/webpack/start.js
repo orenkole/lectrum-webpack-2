@@ -13,33 +13,47 @@ const DevServer = require('webpack-dev-server')
 const hot = require('webpack-hot-middleware')
 
 const getConfig = require('./webpack.config')
+const {choosePort} = require("./utils");
 const {HOST, PORT} = require('./constants')
 
 const compiler = webpack(getConfig());
 
-const server = new DevServer(
-    {
-        host: HOST,
-        port: PORT,
-        historyApiFallback: true, // redirect to index.html in SPA
-        client: {
-            logging: 'none', // lessen console info
-            overlay: true, // print errors on browser page
-        },
-    },
-    compiler
-)
+(async () => {
+    try {
+        const selectedPort = await choosePort(PORT);
 
+        if(!selectedPort) {
+            console.log(chalk.yellowBright(
+                `It's impossible to run the app`
+            ))
+            return null
+        }
 
-
-const runServer = async () => {
-    console.log('Starting server...');
-    await server.start(HOST, PORT, () => {
-        console.log(
-            `${chalk.greenBright('Server listening on')}
-        ${chalk.blueBright(`http://${HOST}:${PORT}`)}`
+        const server = new DevServer(
+            {
+                host: HOST,
+                port: selectedPort,
+                historyApiFallback: true, // redirect to index.html in SPA
+                client: {
+                    logging: 'none', // lessen console info
+                    overlay: true, // print errors on browser page
+                },
+            },
+            compiler
         )
-    });
-};
 
-runServer();
+        const runServer = async () => {
+            console.log('Starting server...');
+            await server.start(HOST, PORT, () => {
+                console.log(
+                    `${chalk.greenBright('Server listening on')} ${chalk.blueBright(`http://${HOST}:${PORT}`)}`
+                )
+            });
+        };
+
+        runServer();
+    } catch(err) {
+        console.log(chalk.redBright('Error'))
+        console.log((err.message || err))
+    }
+})()

@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+
 const {
     BUILD_DIRECTORY,
     SOURCE_DIRECTORY,
