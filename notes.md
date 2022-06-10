@@ -207,3 +207,10 @@ used instead of webpack-hot-middleware.
 ## detect-port-alt
 
 `npm i -D detect-port-alt inquirer`
+
+---
+**3 parts:**
+- common
+- dev
+- prod
+

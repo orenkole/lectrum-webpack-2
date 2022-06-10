@@ -12,11 +12,11 @@ const chalk = require('chalk')
 const DevServer = require('webpack-dev-server')
 const hot = require('webpack-hot-middleware')
 
-const getConfig = require('./webpack.config')
+const getDevConfig = require('./config/webpack.dev')
 const {choosePort} = require("./utils");
 const {HOST, PORT} = require('./constants')
 
-const compiler = webpack(getConfig());
+const compiler = webpack(getDevConfig());
 
 (async () => {
     try {

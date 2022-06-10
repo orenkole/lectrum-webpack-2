@@ -1,11 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 const {
     BUILD_DIRECTORY,
     SOURCE_DIRECTORY,
     PROJECT_ROOT
-} = require("./constants");
+} = require("../constants");
 
 const cleanOptions = {
     verbose: true,
@@ -19,8 +18,6 @@ module.exports = () => {
             path: BUILD_DIRECTORY,
             filename: "bundle.js",
         },
-        mode: 'none',
-        devtool: false,
         output: {
             // needed for clean-webpack-plugin
             path: BUILD_DIRECTORY,
@@ -39,8 +36,6 @@ module.exports = () => {
                 title: "Lear webpack",
                 favicon: "./static/favicon.ico"
             }),
-            // There is native webpack alternative to clean-webpack-plugin https://github.com/johnagan/clean-webpack-plugin/issues/194#issuecomment-781517478
-            new CleanWebpackPlugin({BUILD_DIRECTORY, ...cleanOptions})
         ]
     }
 }
