@@ -11,11 +11,14 @@
         "serve": "serve \"./build\" -s"
     },
     "devDependencies": {
-        "@babel/core": "7.2.0",
+        "@babel/core": "^7.2.0",
+        "@babel/plugin-proposal-class-properties": "^7.17.12",
         "@babel/plugin-syntax-async-generators": "7.2.0",
-        "@babel/preset-env": "7.2.0",
+        "@babel/preset-env": "^7.2.0",
+        "@babel/preset-react": "^7.17.12",
         "@babel/register": "7.0.0",
         "app-root-path": "^2.1.0",
+        "babel-loader": "^8.2.5",
         "babel-plugin-dynamic-import-node": "2.2.0",
         "chalk": "^4.1.2",
         "clean-webpack-plugin": "^4.0.0",
@@ -27,6 +30,7 @@
         "mini-css-extract-plugin": "^2.6.0",
         "moment": "2.22.2",
         "nodegit": "0.23.0",
+        "react-hot-loader": "^4.13.0",
         "serve": "^13.0.2",
         "style-loader": "^3.3.1",
         "webpack": "^5.73.0",
@@ -34,5 +38,9 @@
         "webpack-dev-server": "^4.9.2",
         "webpack-hot-middleware": "^2.25.1",
         "webpack-merge": "^5.8.0"
+    },
+    "dependencies": {
+        "react": "^18.1.0",
+        "react-dom": "^18.1.0"
     }
 }

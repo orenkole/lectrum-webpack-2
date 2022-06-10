@@ -18,12 +18,14 @@ module.exports = () => {
             path: BUILD_DIRECTORY,
             filename: "bundle.js",
         },
-        output: {
-            // needed for clean-webpack-plugin
-            path: BUILD_DIRECTORY,
-        },
         module: {
             rules: [
+                {
+                    test: /\.js$/,
+                    use: {
+                        loader: 'babel-loader'
+                    }
+                },
                 {
                     test: /\.css$/,
                     use: [ 'style-loader', 'css-loader' ]

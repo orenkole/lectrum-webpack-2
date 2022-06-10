@@ -214,3 +214,49 @@ used instead of webpack-hot-middleware.
 - dev
 - prod
 
+
+---
+## babel
+`% npm i -D babel-loader @babel/core`
+
+_.babelrc.js_
+caching babel config:
+```javascript
+api.cache.using();
+```
+---
+preset - preconfigured set of plugins
+`npm i -D @babel/preset-env`
+
+preset_env doesn't support experimental syntax
+`npm i -D @babel/plugin-proposal-class-properties`
+
+makes code more resilient, but slower
+```javascript
+spec: true
+```
+
+make code faster but deviates standard
+```javascript
+loose: false
+```
+
+what types of modules transpiled to:
+_cjs_ is bad for webpack optimization
+```javascript
+modules: false // 'cjs' is bad
+```
+---
+01:05
+_.browserslistrc_
+---
+
+react, react-dom, react-hot-loader
+`npm i react react-dom`
+`npm i -D react-hot-loader`
+`npm i -D @babel/preset-react`
+
+Modify babel config to setup for development through env
+
+**NOTE: react-hot-loader already looks unnecessary**
+
