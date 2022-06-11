@@ -1,11 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const env = require('postcss-preset-env')
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import env from 'postcss-preset-env'
 
-const {
+import {
     BUILD_DIRECTORY,
     SOURCE_DIRECTORY,
     PROJECT_ROOT
-} = require("../constants");
+} from "../constants";
 
 const cleanOptions = {
     verbose: true,
@@ -23,6 +23,7 @@ module.exports = () => {
             rules: [
                 {
                     test: /\.js$/,
+                    exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader'
                     }

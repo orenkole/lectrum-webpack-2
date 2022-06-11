@@ -279,7 +279,7 @@ use: [
 install postcss:
 `npm i -D postcss-loader`
 `npm i -D postcss-preset-env`
-
+inside postcss-preset-env we can setup options for any plugin
 ```javascript
 use: [
     'style-loader',
@@ -309,3 +309,29 @@ use: [
 
 ![img.png](notes_images/L3_1.png)
 ![img.png](notes_images/L3_2.png)
+
+# Lesson 4.
+
+About hot:
+![img.png](notes_images/l4-1.png)
+![img.png](notes_images/l4-2.png)
+
+---
+Excluding node_modules: on dev no, on prod yes because of modern syntax in old browsers
+```javascript
+test: /\.js$/,
+exclude: /node_modules/,
+```
+---
+
+Make node to be able to work with ES modules (import...from)
+
+`npm install --save-dev @babel/register`
+`npm install --save-dev cross-env`
+_package.json_
+```json
+"start": "cross-env-shell NODE_ENV=development node --require @babel/register \"./scripts/webpack/start.js\"",
+```
+---
+NOTE: babel is not merge, used the first available in the path chain
+---

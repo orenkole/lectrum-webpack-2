@@ -7,6 +7,7 @@ module.exports = (api) => {
     ];
 
     if(env === 'development') {
+        /** not necessary. Most valuable for class components */
         plugins.push('react-hot-loader/babel')
     }
 

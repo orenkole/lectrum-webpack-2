@@ -7,14 +7,14 @@
  * 6. run
  */
 
-const webpack = require('webpack')
-const chalk = require('chalk')
-const DevServer = require('webpack-dev-server')
-const hot = require('webpack-hot-middleware')
+import webpack from 'webpack';
+import chalk from 'chalk';
+import DevServer from 'webpack-dev-server';
+import hot from 'webpack-hot-middleware';
 
-const getDevConfig = require('./config/webpack.dev')
-const {choosePort} = require("./utils");
-const {HOST, PORT} = require('./constants')
+import getDevConfig from './config/webpack.dev';
+import {choosePort} from "./utils";
+import {HOST, PORT} from './constants';
 
 const compiler = webpack(getDevConfig());
 
