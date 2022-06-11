@@ -323,7 +323,7 @@ test: /\.js$/,
 exclude: /node_modules/,
 ```
 ---
-
+## ES modules, devtools
 Make node to be able to work with ES modules (import...from)
 
 `npm install --save-dev @babel/register`
@@ -350,4 +350,38 @@ Error: process is not available:
 plugins:
 `new DotenvWebpack(),`
 ---
+
+## working with images: file-loader
+
+`npm install file-loader --save-dev`
+note not working: 
+`<img src="../theme/images/myImg.png"/>`
+
+correct:
+```jsx
+import React from "react";
+import myImg from "../theme/images/l4-1.png"
+export const MyDom = () => {
+    return (
+        <div>
+            hello
+            <img src={myImg}/>
+        </div>
+    )
+}
+```
+_webpack.common.js_
+```javascript
+{
+    test: /\.(png|jpe?g|gif)$/i,
+    use: [
+        {
+            loader: 'file-loader',
+            options: {
+                name: 'images/[name].[ext]'
+            }
+        },
+    ],
+},
+```
 
