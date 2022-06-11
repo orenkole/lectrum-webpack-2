@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const env = require('postcss-preset-env')
 
 const {
     BUILD_DIRECTORY,
@@ -28,7 +29,36 @@ module.exports = () => {
                 },
                 {
                     test: /\.css$/,
-                    use: [ 'style-loader', 'css-loader' ]
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                localIdentName: '[path][name]__[local]--[hash:base64:5',
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: [
+                                    env({
+                                        stage: 0,
+                                        features: {
+                                            'custom-media-queries': {
+                                                importFrom: [{
+                                                    customMedia: {
+                                                        '--phonePortrait':
+                                                            '(width <= 414px)',
+                                                    }
+                                                }]
+                                            }
+                                        }
+                                    })
+                                ]
+                            }
+                        }
+                    ]
                 }
             ]
         },

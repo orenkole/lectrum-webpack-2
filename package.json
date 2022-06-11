@@ -30,6 +30,8 @@
         "mini-css-extract-plugin": "^2.6.0",
         "moment": "2.22.2",
         "nodegit": "0.23.0",
+        "postcss-loader": "^7.0.0",
+        "postcss-preset-env": "^7.7.1",
         "react-hot-loader": "^4.13.0",
         "serve": "^13.0.2",
         "style-loader": "^3.3.1",

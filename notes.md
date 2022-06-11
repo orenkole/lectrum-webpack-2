@@ -260,3 +260,52 @@ Modify babel config to setup for development through env
 
 **NOTE: react-hot-loader already looks unnecessary**
 
+---
+Deal with css
+use css modules:
+```javascript
+use: [
+    'style-loader',
+    {
+        loader: 'css-loader',
+        options: {
+            modules: true,
+            localIdentName: '[path][name]__[local]--[hash:base64:5',
+        }
+    }
+]
+```
+
+install postcss:
+`npm i -D postcss-loader`
+`npm i -D postcss-preset-env`
+
+```javascript
+use: [
+    'style-loader',
+    ...
+    {
+        loader: 'postcss-loader',
+        options: {
+            plugins: [
+                env({
+                    stage: 0,
+                    features: {
+                        'custom-media-queries': {
+                            importFrom: [{
+                                customMedia: {
+                                    '--phonePortrait':
+                                        '(width <= 414px)',
+                                }
+                            }]
+                        }
+                    }
+                })
+            ]
+        }
+    }
+]
+```
+
+![img.png](notes_images/L3_1.png)
+![img.png](notes_images/L3_2.png)
