@@ -1,6 +1,5 @@
-import component from './simple-components/dom';
-// import "./theme/main.css"
+import React from 'react';
+import ReactDOM from "react-dom";
+import {MyDom} from "./simple-components/dom";
 
-const element = component()
-
-document.body.appendChild(element)
+ReactDOM.render(<MyDom/>, document.getElementById('app'))

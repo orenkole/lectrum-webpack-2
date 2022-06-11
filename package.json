@@ -25,6 +25,8 @@
         "cross-env": "^5.2.0",
         "css-loader": "^6.7.1",
         "detect-port-alt": "^1.1.6",
+        "dotenv": "^16.0.1",
+        "dotenv-webpack": "^7.1.0",
         "html-webpack-plugin": "^5.5.0",
         "inquirer": "^8.2.4",
         "mini-css-extract-plugin": "^2.6.0",
@@ -41,6 +43,7 @@
         "webpack-merge": "^5.8.0"
     },
     "dependencies": {
+        "process": "^0.11.10",
         "react": "^18.1.0",
         "react-dom": "^18.1.0"
     }

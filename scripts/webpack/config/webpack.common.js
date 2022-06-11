@@ -1,4 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import DotenvWebpack from "dotenv-webpack";
 import env from 'postcss-preset-env'
 
 import {
@@ -69,6 +70,7 @@ module.exports = () => {
                 title: "Lear webpack",
                 favicon: "./static/favicon.ico"
             }),
+            new DotenvWebpack(),
         ]
     }
 }

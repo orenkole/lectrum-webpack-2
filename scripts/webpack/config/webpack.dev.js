@@ -6,8 +6,7 @@ module.exports = () => {
         getCommonConfig(),
         {
             mode: 'none',
-            // TODO: setup source maps
-            devtool: false,
+            devtool: 'eval-cheap-module-source-map',
             module: {
                 rules: [
                     // TODO: fix styles

@@ -335,3 +335,19 @@ _package.json_
 ---
 NOTE: babel is not merge, used the first available in the path chain
 ---
+
+## Fix devtool
+`devtool: 'eval-cheap-module-source-map'`
+---
+
+source map on prod is helpful when sentry used
+
+_hidden-source-map_ - when source can't be shown for security reason
+---
+
+Error: process is not available:
+`nmp i -D dotenv-webpack`
+plugins:
+`new DotenvWebpack(),`
+---
+

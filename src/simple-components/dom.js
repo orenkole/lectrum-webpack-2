@@ -1,7 +1,9 @@
-export default (text = 'Hello 🎉🎉🎉') => {
-    const element = document.createElement('div');
+import React from "react";
 
-    element.innerHTML = text;
-
-    return element;
-};
+export const MyDom = () => {
+    return (
+        <div>
+            hello
+        </div>
+    )
+}
