@@ -28,6 +28,7 @@ module.exports = () => {
         modules.loadJavascript(),
         modules.loadCss(),
         modules.loadImages(),
+        modules.loadSvg(),
         modules.setupHtml(),
     )
 }

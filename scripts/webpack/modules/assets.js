@@ -9,3 +9,35 @@ export const setupHtml = () => ({
         }),
     ]
 })
+
+
+export const loadSvg = () => ({
+    module: {
+        rules: [
+            {
+                test: /\.svg$/,
+                issuer:  /\.js$/,
+                use: [
+                    {
+                        loader: '@svgr/webpack',
+                        options: {
+                            name: './images/[name].[ext]'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.svg$/,
+                issuer: /\.css$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: './images/[name].[ext]'
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+})

@@ -384,4 +384,48 @@ _webpack.common.js_
     ],
 },
 ```
+---
+split to modules:
+![img.png](notes_images/l4-3.png)
 
+## Working with svg
+https://vecta.io/blog/best-way-to-embed-svg
+
+`npm i -D @svgr/webpack`
+
+_modules/svg.js_
+```javascript
+export const loadSvg = () => ({
+    module: {
+        rules: [
+            {
+                test: /\.svg$/,
+                issuer: /\.js$/,
+                use: [
+                    '@svgr/webpack',
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: './images/[name].[ext]'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.svg$/,
+                issuer: /\.css$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: './images/[name].[ext]'
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+})
+```
+
+Note: convarting svg to base64 is bad because of productivity
