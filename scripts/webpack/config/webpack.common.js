@@ -1,12 +1,12 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import DotenvWebpack from "dotenv-webpack";
-import env from 'postcss-preset-env'
+import merge from "webpack-merge";
 
 import {
     BUILD_DIRECTORY,
     SOURCE_DIRECTORY,
     PROJECT_ROOT
 } from "../constants";
+import * as modules from "../modules";
 
 const cleanOptions = {
     verbose: true,
@@ -14,74 +14,20 @@ const cleanOptions = {
 }
 
 module.exports = () => {
-    return {
-        entry: SOURCE_DIRECTORY,
-        output: {
-            path: BUILD_DIRECTORY,
-            filename: "bundle.js",
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader'
-                    }
-                },
-                {
-                    test: /\.(png|jpe?g|gif)$/i,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                name: 'images/[name].[ext]'
-                            }
-                        },
-                    ],
-                },
-                {
-                    test: /\.css$/,
-                    use: [
-                        'style-loader',
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                modules: true,
-                                localIdentName: '[path][name]__[local]--[hash:base64:5',
-                            }
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: [
-                                    env({
-                                        stage: 0,
-                                        features: {
-                                            'custom-media-queries': {
-                                                importFrom: [{
-                                                    customMedia: {
-                                                        '--phonePortrait':
-                                                            '(width <= 414px)',
-                                                    }
-                                                }]
-                                            }
-                                        }
-                                    })
-                                ]
-                            }
-                        }
-                    ]
-                }
+    return merge(
+        {
+            entry: SOURCE_DIRECTORY,
+            output: {
+                path: BUILD_DIRECTORY,
+                filename: "bundle.js",
+            },
+            plugins: [
+                new DotenvWebpack(),
             ]
         },
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: "./static/template.html",
-                title: "Lear webpack",
-                favicon: "./static/favicon.ico"
-            }),
-            new DotenvWebpack(),
-        ]
-    }
+        modules.loadJavascript(),
+        modules.loadCss(),
+        modules.loadImages(),
+        modules.setupHtml(),
+    )
 }
