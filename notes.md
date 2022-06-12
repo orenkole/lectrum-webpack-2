@@ -538,3 +538,39 @@ if (RELEASE === '2.1') {
 ```
 RELEASE - feature flag
 
+---
+_webpack.commor.js_
+```javascript
+plugins: [
+    ...
+    new DefinePlugin({
+        RELEASE: '2.0',
+        TWO: '1+1',
+        THREE: JSON.stringify(3),
+        FOUR: 4,
+        TRUE_SIMPLE: true,
+        TRUE_STRINGIFIED: JSON.stringify(true),
+    })
+```
+_dom.jsx_
+```javascript
+    console.log(RELEASE)
+    console.log(TWO)
+    console.log(THREE)
+    console.log(FOUR)
+    console.log(TRUE_SIMPLE)
+    console.log(TRUE_STRINGIFIED)
+```
+![img.png](notes_images/l5-3.png)
+
+we must JSON.stringify strings
+
+__IS_ADMIN__, __STAGE__, etc
+
+--- 
+dead brunch:
+`if (false) {...}`
+`if (__DEV__) {...}`
+---
+We can set API_URI as global variable, without import
+---

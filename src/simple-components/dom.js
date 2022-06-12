@@ -5,12 +5,9 @@ import thumbsUp from "../theme/images/thumbs-up.svg"
 import styles from "../theme/main.css";
 
 export const MyDom = () => {
-    console.log(RELEASE)
-    console.log(TWO)
-    console.log(THREE)
-    console.log(FOUR)
-    console.log(TRUE_SIMPLE)
-    console.log(TRUE_STRINGIFIED)
+    console.log(__DEV__)
+    console.log(__PROD__)
+    console.log(__ENV__)
     return (
         <div>
             hello
