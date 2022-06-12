@@ -9,17 +9,6 @@ module.exports = () => {
         {
             mode: 'none',
             devtool: 'eval-cheap-module-source-map',
-            module: {
-                rules: [
-                    // TODO: fix styles
-                    {
-                        test: /\.css$/,
-                        use: [ 'style-loader', 'css-loader' ]
-                    }
-                ]
-            },
-            plugins: [
-            ]
         },
         modules.loadDevCss(),
     )
