@@ -1,6 +1,6 @@
-const detectPort = require('detect-port-alt')
-const inquirer = require('inquirer')
-const chalk = require('chalk')
+import detectPort from 'detect-port-alt'
+import inquirer from 'inquirer';
+import chalk from 'chalk';
 
 exports.choosePort = async (defaultPort) => {
     try {

@@ -20,6 +20,7 @@ module.exports = () => {
             output: {
                 path: BUILD_DIRECTORY,
                 filename: "js/bundle.js",
+                publicPath: "/",
             },
             plugins: [
                 new DotenvWebpack(),

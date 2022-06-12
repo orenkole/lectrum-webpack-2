@@ -131,8 +131,8 @@ npm i -D style-loader css-loader
 
 Loaders are able to chain (from bottom to top)
 
-![](loaders-chain.png?raw=true)
-![](why-style.png?raw=true)
+![](notes_images/loaders-chain.png?raw=true)
+![](notes_images/why-style.png?raw=true)
 
 _style-loader_ converts to js in order to use hot-reloading. Hot reloading can't work with external css files, only with <style> tags
 
@@ -306,14 +306,14 @@ use: [
 ]
 ```
 
-![img.png](L3_1.png)
-![img.png](L3_2.png)
+![img.png](notes_images/L3_1.png)
+![img.png](notes_images/L3_2.png)
 
 # Lesson 4.
 
 About hot:
-![img.png](l4-1.png)
-![img.png](l4-2.png)
+![img.png](notes_images/l4-1.png)
+![img.png](notes_images/l4-2.png)
 
 ---
 Excluding node_modules: on dev no, on prod yes because of modern syntax in old browsers
@@ -385,7 +385,7 @@ _webpack.common.js_
 ```
 ---
 split to modules:
-![img.png](l4-3.png)
+![img.png](notes_images/l4-3.png)
 
 ## Working with svg
 https://vecta.io/blog/best-way-to-embed-svg
@@ -433,16 +433,16 @@ Note: convarting svg to base64 is bad because of productivity
 ## Fonts
 
 Use in css:
-![img.png](l5-1.png)
+![img.png](notes_images/l5-1.png)
 
 Actual font
-![img.png](l5-2.png)
+![img.png](notes_images/l5-2.png)
 
 note: system-ui
 
 ## sass
 
-## css
+## css: split to prod & dev, minify
 Note: for good performance:
 - load css for every page separately
 - lazy load images
@@ -481,3 +481,47 @@ export const loadProdCss = () =>({
 ---
 Use css nano to minify on prod
 `npm i -D cssnano`
+
+## Images optimization
+
+images optimization must be done with specific soft, like optimage, not with webpack
+
+`npm i -D image-minimizer-webpack-plugin imagemin-mozjpeg imagemin-pngquant imagemin-svgo`
+
+_optimization.js_
+```javascript
+import ImageMinWebpackPlugin from "imagemin-webpack";
+import imageminMozJpeg from "imagemin-mozjpeg";
+import imageminPngQuant from "imagemin-pngquant";
+import imageminSvgo from "imagemin-svgo";
+
+export const optimizeImages = () => ({
+    plugins: [
+        new ImageMinWebpackPlugin({
+            imageminOptions: {
+                plugins: [
+                    imageminMozJpeg({
+                        progressive: true,
+                        quality: 60,
+                    }),
+                    imageminPngQuant({
+                        quality: 60,
+                    }),
+                    imageminSvgo()
+                ]
+            }
+        })
+    ]
+})
+```
+---
+NOTE:
+publicPath - to set the root of assets path for plugins (problem with 404 for assets like images in css url);
+_webpack.common.js_
+```javascript
+output: {
+    path: BUILD_DIRECTORY,
+    filename: "js/bundle.js",
+    publicPath: "/",
+```
+---

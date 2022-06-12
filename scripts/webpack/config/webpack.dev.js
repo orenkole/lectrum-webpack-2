@@ -1,7 +1,7 @@
 import * as modules from "../modules";
 
-const {merge} = require('webpack-merge')
-const getCommonConfig = require("./webpack.common")
+import {merge} from 'webpack-merge';
+import getCommonConfig from "./webpack.common";
 
 module.exports = () => {
     return merge(
