@@ -25,8 +25,10 @@ module.exports = () => {
                 new DotenvWebpack(),
             ]
         },
+        modules.loadFonts(),
         modules.loadJavascript(),
         modules.loadCss(),
+        modules.loadSass(),
         modules.loadImages(),
         modules.loadSvg(),
         modules.setupHtml(),

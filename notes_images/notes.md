@@ -131,8 +131,8 @@ npm i -D style-loader css-loader
 
 Loaders are able to chain (from bottom to top)
 
-![](./notes_images/loaders-chain.png?raw=true)
-![](./notes_images/why-style.png?raw=true)
+![](loaders-chain.png?raw=true)
+![](why-style.png?raw=true)
 
 _style-loader_ converts to js in order to use hot-reloading. Hot reloading can't work with external css files, only with <style> tags
 
@@ -307,14 +307,14 @@ use: [
 ]
 ```
 
-![img.png](notes_images/L3_1.png)
-![img.png](notes_images/L3_2.png)
+![img.png](L3_1.png)
+![img.png](L3_2.png)
 
 # Lesson 4.
 
 About hot:
-![img.png](notes_images/l4-1.png)
-![img.png](notes_images/l4-2.png)
+![img.png](l4-1.png)
+![img.png](l4-2.png)
 
 ---
 Excluding node_modules: on dev no, on prod yes because of modern syntax in old browsers
@@ -386,7 +386,7 @@ _webpack.common.js_
 ```
 ---
 split to modules:
-![img.png](notes_images/l4-3.png)
+![img.png](l4-3.png)
 
 ## Working with svg
 https://vecta.io/blog/best-way-to-embed-svg
@@ -429,3 +429,26 @@ export const loadSvg = () => ({
 ```
 
 Note: convarting svg to base64 is bad because of productivity
+---
+
+## Fonts
+
+Use in css:
+![img.png](l5-1.png)
+
+Actual font
+![img.png](l5-2.png)
+
+note: system-ui
+
+## sass
+
+## css
+Note: for good performance:
+- load css for every page separately
+- lazy load images
+---
+To extract css to a separate file:
+`npm i -D mini-css-extract-plugin`
+
+Split css into dev and prod
