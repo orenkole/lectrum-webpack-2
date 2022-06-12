@@ -269,8 +269,7 @@ use: [
     {
         loader: 'css-loader',
         options: {
-            modules: true,
-            localIdentName: '[path][name]__[local]--[hash:base64:5',
+            modules: {localIdentName: '[path][name]__[local]--[hash:base64:5'},
         }
     }
 ]
@@ -452,3 +451,33 @@ To extract css to a separate file:
 `npm i -D mini-css-extract-plugin`
 
 Split css into dev and prod
+```javascript
+export const loadProdCss = () =>({
+    /**
+     * mini-css-extract-plugin
+     * css loader (minification is added)
+     * postcss loader
+     */
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    ...
+                ]
+            }
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].[id].css',
+            chunkFilename: '[name].[id].css',
+        })
+    ]
+    ...
+})
+```
+---
+Use css nano to minify on prod
+`npm i -D cssnano`

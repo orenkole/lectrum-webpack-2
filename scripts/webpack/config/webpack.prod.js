@@ -1,3 +1,5 @@
+import * as modules from "../modules";
+
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const {merge} = require('webpack-merge')
 const getCommonConfig = require('./webpack.common')
@@ -21,6 +23,7 @@ module.exports = () => {
             plugins: [
                 new CleanWebpackPlugin({BUILD_DIRECTORY, ...cleanOptions})
             ]
-        }
+        },
+        modules.loadProdCss(),
     )
 }

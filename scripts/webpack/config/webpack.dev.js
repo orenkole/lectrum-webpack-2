@@ -1,3 +1,5 @@
+import * as modules from "../modules";
+
 const {merge} = require('webpack-merge')
 const getCommonConfig = require("./webpack.common")
 
@@ -18,6 +20,7 @@ module.exports = () => {
             },
             plugins: [
             ]
-        }
+        },
+        modules.loadDevCss(),
     )
 }

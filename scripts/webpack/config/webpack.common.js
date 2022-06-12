@@ -19,7 +19,7 @@ module.exports = () => {
             entry: SOURCE_DIRECTORY,
             output: {
                 path: BUILD_DIRECTORY,
-                filename: "bundle.js",
+                filename: "js/bundle.js",
             },
             plugins: [
                 new DotenvWebpack(),
@@ -27,7 +27,6 @@ module.exports = () => {
         },
         modules.loadFonts(),
         modules.loadJavascript(),
-        modules.loadCss(),
         modules.loadSass(),
         modules.loadImages(),
         modules.loadSvg(),
