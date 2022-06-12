@@ -1,5 +1,26 @@
 import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
 import { extendDefaultPlugins } from "svgo";
+import TerserPlugin from "terser-webpack-plugin";
+
+export const optimizeBuild = () => ({
+    optimization: {
+        nodeEnv: 'production',
+        minimize: false,
+        minimizer: [ new TerserPlugin({
+            terserOptions: {
+                safari10: true,
+            }
+        }) ],
+        noEmitOnError: true,
+        removeEmptyChunks: true,
+        mergeDuplicateChunks: true,
+        removeAvailableModules: true,
+        concatenateModules: true,
+        providedExports: true,
+        usedExports: true,
+        sideEffects: true,
+    }
+})
 
 export const optimizeImages = () => ({
     optimization: {

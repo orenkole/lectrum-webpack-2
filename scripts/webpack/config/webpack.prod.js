@@ -8,6 +8,7 @@ import {
     BUILD_DIRECTORY,
     PROJECT_ROOT
 } from "../constants";
+import {connectBundleAnalyzer} from "../utils";
 
 const cleanOptions = {
     verbose: true,
@@ -25,6 +26,8 @@ module.exports = () => {
             ]
         },
         modules.loadProdCss(),
+        modules.optimizeBuild(),
         modules.optimizeImages(),
+        connectBundleAnalyzer(),
     )
 }

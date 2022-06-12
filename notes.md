@@ -574,3 +574,111 @@ dead brunch:
 ---
 We can set API_URI as global variable, without import
 ---
+
+# Lesson 6.
+https://survivejs.com/
+
+webpack-bar - show progress
+webpack-friendly-errors - show errors friendly
+
+## Assembling optimization
+
+formidable: dashboards for webpack, node
+---
+webpack-contrib - repo with official packages
+---
+
+We'll use webpack-bundle-analyzer
+
+`npm i -D webpack-bundle-analyzer`
+
+_package.json_
+```json
+"analyze": "webpack-bundle-analyzer \"./build/stats.json\"",
+```
+
+_utils.js_
+```javascript
+export const connectBundleAnalyzer = () => ({
+    plugins: [
+        new BundleAnalyzerPlugin({
+            analyzerMod: 'disabled',
+            openAnalyzer: false,
+            generateStatsFile: true,
+        })
+    ]
+})
+```
+_webpack.prod.js_
+```javascript
+connectBundleAnalyzer(),
+```
+---
+NOTE:
+mode 'production', 'development' in NODE_ENV is overwritten with 
+_webpack.prod.js_
+`mode: 'none',`
+---
+
+Reviewing bundle.js
+ieefe with a lot of arguments (~1200 strings)
+
+---
+Start build optimization:
+_optimization.js_
+```javascript
+export const optimizeBuild = () => ({
+    optimization: ...
+})
+```
+
+some bugs can be fixed with:
+```javascript
+terserOptions: {
+    safari10: true,
+}
+```
+---
+!Important: don't emit errors on prod:
+```javascript
+noEmitOnError: true,
+```
+---
+chunk is like a box with modules
+
+code splitting: split into multiple chunks
+```javascript
+removeEmptyChunks: true,
+```
+---
+chunks can contain other chunks as children
+---
+module concatenation (scope hoisting)
+ES modules are transformed to IIFEs
+```javascript
+concatenateModules: true,
+providedExports: true
+```
+
+turn on tree shaking:
+```javascript
+sideEffects: true,
+```
+---
+
+Some settings are vulnerable;
+like:
+we need
+_package.json_ of library
+```json
+"sideEffects: false
+```
+like
+```javascript
+        providedExports: true,
+        usedExports: true,
+```
+is necessary for things like `concatenateModules`, `sideEffects`
+---
+modulesIds, chunksIds (alternatives namedModules, namedChunks deprecated) - modules in bundle.js are marked with paths, not with numbers
+we need it for development
