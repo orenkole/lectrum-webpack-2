@@ -525,3 +525,16 @@ output: {
     publicPath: "/",
 ```
 ---
+
+## Environment
+
+1. API (link to api whether dev or prod)
+2. conditions (dev || prod)
+3. feature flags
+```javascript
+if (RELEASE === '2.1') {
+    //...
+}
+```
+RELEASE - feature flag
+
