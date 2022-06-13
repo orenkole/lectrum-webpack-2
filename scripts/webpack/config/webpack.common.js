@@ -40,5 +40,6 @@ module.exports = () => {
         modules.loadImages(),
         modules.loadSvg(),
         modules.setupHtml(),
+        modules.filterMomentLocales(),
     )
 }

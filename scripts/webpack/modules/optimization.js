@@ -1,6 +1,7 @@
 import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
 import { extendDefaultPlugins } from "svgo";
 import TerserPlugin from "terser-webpack-plugin";
+import {ContextExclusionPlugin} from "webpack";
 
 export const optimizeBuild = () => ({
     optimization: {
@@ -11,7 +12,7 @@ export const optimizeBuild = () => ({
                 safari10: true,
             }
         }) ],
-        noEmitOnError: true,
+        // noEmitOnError: true,
         removeEmptyChunks: true,
         mergeDuplicateChunks: true,
         removeAvailableModules: true,
@@ -59,4 +60,8 @@ export const optimizeImages = () => ({
             }),
         ],
     },
+})
+
+export const filterMomentLocales = () => ({
+    plugins: [ new ContextExclusionPlugin(/moment\/locale$/, /(en)/)]
 })

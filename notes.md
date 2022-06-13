@@ -682,3 +682,7 @@ is necessary for things like `concatenateModules`, `sideEffects`
 ---
 modulesIds, chunksIds (alternatives namedModules, namedChunks deprecated) - modules in bundle.js are marked with paths, not with numbers
 we need it for development
+
+# Lesson 7
+## ContextReplacementPlugin: select moment locales
+
