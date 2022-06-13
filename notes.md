@@ -640,6 +640,7 @@ terserOptions: {
 ```
 ---
 !Important: don't emit errors on prod:
+We got error!
 ```javascript
 noEmitOnError: true,
 ```
@@ -659,11 +660,13 @@ ES modules are transformed to IIFEs
 concatenateModules: true,
 providedExports: true
 ```
-
+dependency chain: providedExports => usedExports => occurenceOrder, concatenateModules
+---
 turn on tree shaking:
 ```javascript
 sideEffects: true,
 ```
+tree shaking works only with ES modules
 ---
 
 Some settings are vulnerable;
@@ -682,7 +685,33 @@ is necessary for things like `concatenateModules`, `sideEffects`
 ---
 modulesIds, chunksIds (alternatives namedModules, namedChunks deprecated) - modules in bundle.js are marked with paths, not with numbers
 we need it for development
+Hot reload is faster with pathes in webpack, not with array indexes. Array indexes are faste on prod.
 
 # Lesson 7
 ## ContextReplacementPlugin: select moment locales
+https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
 
+## More on tree shaking
+Tree shaking able packages must contain `sideEffect: false` in package.json
+
+For example, we must use lodash-es to be able to tree shake
+
+----
+## Hashing
+`filename: "js/[contenthash].[id].bundle.js",`
+---
+entrypoint - mandatory point
+chunkFilename for splitpoint - cut from bundle, loading on demand
+`chunkFilename: 'js/[name].[chunkhash:5].[id].bundle.js",'`
+
+_css.js_
+```javascript
+new MiniCssExtractPlugin({
+    filename: 'css/[name].[contenthash:5].[id].css',
+    chunkFilename: 'css/[name].[contenthash:5].[id].css',
+})
+```
+NOTE: every plugin and webpack have their own hashing algorithms
+
+If files have hash, browser can apply caching:
+*cache-control* header in http response is needed

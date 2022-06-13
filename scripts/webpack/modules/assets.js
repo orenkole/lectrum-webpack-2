@@ -33,7 +33,7 @@ export const loadSvg = () => ({
                     {
                         loader: 'file-loader',
                         options: {
-                            name: './images/[name].[ext]'
+                            name: './images/[name].[hash:5].[ext]'
                         }
                     }
                 ]
@@ -52,7 +52,7 @@ export const loadFonts = () => ({
                     {
                         loader: 'file-loader',
                         options: {
-                            name: './fonts/[name].[ext]'
+                            name: './fonts/[name].[hash:5].[ext]'
                         }
                     }
                 ]

@@ -22,7 +22,8 @@ module.exports = () => {
             entry: SOURCE_DIRECTORY,
             output: {
                 path: BUILD_DIRECTORY,
-                filename: "js/bundle.js",
+                filename: "js/[contenthash:5].[id].bundle.js",
+                chunkFilename: 'js/[name].[chunkhash:5].[id].bundle.js',
                 publicPath: "/",
             },
             plugins: [
