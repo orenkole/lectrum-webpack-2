@@ -715,3 +715,42 @@ NOTE: every plugin and webpack have their own hashing algorithms
 
 If files have hash, browser can apply caching:
 *cache-control* header in http response is needed
+
+## Code splitting
+
+In simplest case code splitting works out of the box, but only by making split points
+
+We want vendors to one hash and our code to another, becase we don't want browser to load vendor code when we update our app.
+
+Initial chunk - vendors (need to configure)
+Async chunks - our code (no need to configure out of the box);
+
+_.babelrc_
+```javascript
+    const plugins = [
+        '@babel/plugin-syntax-dynamic-import',
+        // ...
+    ];
+```
+
+lazy load in code:
+![img.png](notes_images/l7-1.png)
+comment - in order to name chunks in console
+
+https://webpack.js.org/api/module-methods/#magic-comments
+
+---
+Dynamic imports, vendors to separate bundle
+```javascript
+splitChunks: {
+    chunks: 'all',
+    minSize: 30000,
+}
+```
+
+minSize - minimal size of chunk (for vendors for example if their size if greqter than 30000)
+
+![img.png](notes_images/l7-2.png)
+![img.png](notes_images/l7-3.png)
+
+Cache group inherits options of parent

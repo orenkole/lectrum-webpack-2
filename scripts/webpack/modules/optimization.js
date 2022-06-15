@@ -20,6 +20,9 @@ export const optimizeBuild = () => ({
         providedExports: true,
         usedExports: true,
         sideEffects: true,
+        splitChunks: {
+            chunks: 'all',
+        }
     }
 })
 

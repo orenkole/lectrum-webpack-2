@@ -16,14 +16,19 @@ const cleanOptions = {
 
 module.exports = () => {
     const {NODE_ENV} = process.env;
+    const IS_DEV = NODE_ENV === 'development';
 
     return merge(
         {
             entry: SOURCE_DIRECTORY,
             output: {
                 path: BUILD_DIRECTORY,
-                filename: "js/[contenthash:5].[id].bundle.js",
-                chunkFilename: 'js/[name].[chunkhash:5].[id].bundle.js',
+                filename: IS_DEV
+                    ? "js/[name].[hash].[id].bundle.js"
+                    : "js/[name].[contenthash:5].[id].bundle.js",
+                chunkFilename: IS_DEV
+                    ? "js/[name].[hash].[id].bundle.js"
+                    : "js/[name].[contenthash:5].[id].bundle.js",
                 publicPath: "/",
             },
             plugins: [
